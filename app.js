@@ -29,8 +29,6 @@ app.use('/api', paymentRouter)
 app.use("/admin", adminroute)
 
 
-
-
 app.listen(8000, async () => {
     try {
         await connection
