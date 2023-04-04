@@ -13,14 +13,16 @@ const getUserRoute = require("./routes/getUser.route")
 
 require("dotenv").config()
 app.use(cors())
-app.get("/", (req, res) => {
-    res.send({ 'message': "This is the Home" })
-})
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use("/auth", authroutes)
-app.use(authentication)
+
+app.get("/", (req, res) => {
+    res.send({ 'message': "This is the Home" })
+})
+//app.use(authentication)
 app.use('/plan', buyplanRoute)
 app.use('/dashboard', getUserRoute)
 app.use("/user", userroute)
