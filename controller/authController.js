@@ -62,22 +62,24 @@ const Login = async (req, res) => {
   const { phoneNumber, logPassword } = req.body;
   const user = await UserModel.findOne({ phoneNumber });
   const hash = user?.logPassword;
-  console.log(user)
-  bycrpt.compare(logPassword, hash, function (err, result) {
+  
+ bycrpt.compare(logPassword, hash, function (err, result) {
     if (err) {
       return res.send({ message: "Use right credentials", status: "401" });
+    }else{
+      if (result) {
+        var token = jwt.sign(
+          { userId: user._id, phoneNumber: user.phoneNumber, role: user.role, wallet: user.wallet },
+          "secret"
+        );
+        if (user.length == 0) {
+          return res.send({ error: "invalid credentials" });
+        }
+        let decoded = jwt.verify(token, "secret")
+        return res.send({ message: "Login successful", token: token, role: user.role, Decoded: decoded });
     }
-    if (result) {
-      var token = jwt.sign(
-        { userId: user._id, phoneNumber: user.phoneNumber, role: user.role, wallet: user.wallet },
-        "secret"
-      );
-      if (user.length == 0) {
-        return res.send({ error: "invalid credentials" });
-      }
-      let decoded = jwt.verify(token, "secret")
-      return res.send({ message: "Login successful", token: token, role: user.role, Decoded: decoded });
-    }
+  }
+    
   });
 };
 

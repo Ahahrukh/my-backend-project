@@ -7,7 +7,6 @@ paymentRouter.post('/payment', async (req, res) => {
     key_id: 'rzp_test_OCuhxojsa984jd',
     key_secret: 'jWV74XniMcShPVMEG365u2qV',
   });
-  console.log(req.body)
   var amount = req.body.amount;
   try {
     let order = await instance.orders.create({
@@ -16,7 +15,6 @@ paymentRouter.post('/payment', async (req, res) => {
     })
     res.send({ message: order, status: "Success" });
   } catch (error) {
-    console.log(error);
     res.send({ message: "internal error" })
   }
 })

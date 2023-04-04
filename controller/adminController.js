@@ -16,7 +16,6 @@ const createPlan = async (req, res) => {
         await plan.save();
         return res.status(201).send({ message: "plan have created" });
     } catch (error) {
-        console.log(error)
         return res.status(500).send({ error: "internal server error" });
     }
 };
@@ -38,7 +37,6 @@ const updatePlan = async (req, res) => {
         const plans = await planModel.find();
         res.status(200).send({ planList: plans });
     } catch (error) {
-        console.log(error)
         res.status(500).send({ error: "internal server error" });
     }
 };

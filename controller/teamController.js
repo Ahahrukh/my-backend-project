@@ -23,7 +23,6 @@ const teamMember = async (req, res) => {
 
         return res.send(reffarreby);
     } catch (error) {
-        console.log(error)
         return res.status(500).send({ error: "internal server error" });
     }
 };

@@ -9,7 +9,7 @@ getUserRoute.get('/getuser/:id',async(req, res)=>{
         let current=await UserModel.findOne({_id:id})
        res.send({message:'success',user:current.wallet})
     } catch (error) {
-        console.log(error)
+        res.send({message:'error',})
     }
 })
 

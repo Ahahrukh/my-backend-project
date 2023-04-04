@@ -46,7 +46,6 @@ const recharge = async (req, res) => {
         }
         return res.send({ message: "recharge successful" });
     } catch (error) {
-        console.log(error);
         return res.status(500).send({ error: "internal server error" });
     }
 };
@@ -69,13 +68,12 @@ const getwallet = async (req, res) => {
         }
 
     } catch (error) {
-        console.log(error);
         return res.status(500).send({ error: "internal server error" });
     }
 }
 const job = nodeCron.schedule("*/1 * * * * *", () => {
-    alert(new Date().toLocaleString())
-    console.log(new Date().toLocaleString());
+    //alert(new Date().toLocaleString())
+    // console.log(new Date().toLocaleString());
 });
 
 module.exports = { recharge, getwallet };
