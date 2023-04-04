@@ -15,11 +15,12 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.use("/auth", authroutes)
+
 
 app.get("/", (req, res) => {
     res.send({ 'message': "This is the Home" })
 })
+app.use("/auth", authroutes)
 app.use(authentication)
 app.use('/plan', buyplanRoute)
 app.use('/dashboard', getUserRoute)
