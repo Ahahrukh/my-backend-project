@@ -12,9 +12,13 @@ const buyplanRoute = require("./routes/buyplan.routes")
 const getUserRoute = require("./routes/getUser.route")
 
 require("dotenv").config()
+app.use(cors())
+app.get("/", (req, res) => {
+    res.send({ 'message': "This is the Home" })
+})
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(cors())
+
 app.use("/auth", authroutes)
 app.use(authentication)
 app.use('/plan', buyplanRoute)
@@ -25,9 +29,7 @@ app.use('/api', paymentRouter)
 app.use("/admin", adminroute)
 
 
-app.get("/", (req, res) => {
-    res.send({ 'message': "This is the Home" })
-})
+
 
 app.listen(8000, async () => {
     try {
